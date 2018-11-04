@@ -7,16 +7,24 @@ import time
 app = Flask(__name__)
 debug = True
 
+
+#Get the device going
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
+
+#Setup some variables for reading.
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
 
+#Reads the raw unformatted celcius temperature from the DS18B20
 def read_temp_raw():
     f = open(device_file, 'r')
     lines = f.readlines()
     f.close()
     return lines
 
+#Reads and formats the temperature in F
 def read_temp():
     lines = read_temp_raw()
     while lines[0].strip()[-3:] != 'YES':
@@ -29,6 +37,7 @@ def read_temp():
         temp_f = temp_c * 9.0 / 5.0 + 32.0
         return temp_f
 
+#show the current temp
 @app.route('/')
 def index():
   return  "Current temp %f" % read_temp()
@@ -36,6 +45,3 @@ def index():
 if __name__ == '__main__':
   app.debug = debug
   app.run(host='0.0.0.0')
-
-os.system('modprobe w1-gpio')
-os.system('modprobe w1-therm')
