@@ -40,7 +40,11 @@ def read_temp():
 #show the current temp
 @app.route('/')
 def index():
-  return  "Current temp %f" % read_temp()
+  return  "Welcome to the Brew Controller!"
+
+@app.route('/temp')
+def temp():
+  return "%f" % read_temp()
 
 if __name__ == '__main__':
   app.debug = debug
