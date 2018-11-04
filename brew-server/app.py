@@ -17,7 +17,7 @@ def index():
 
 if __name__ == '__main__':
   app.debug = debug
-  app.run()
+  app.run(host='0.0.0.0')
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
