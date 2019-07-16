@@ -52,7 +52,7 @@ def setpoint(setpoint):
   return "%i" % setpoint
 
 #set the set temperature
-@app.route('/brew/<bool:start>')
+@app.route('/brew/<boolean:start>')
 def brew(start):
   return 'brewing: %b' % start
 
