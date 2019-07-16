@@ -17,3 +17,30 @@ sudo nano /boot/config.txt
 
 add the line:
 "dtoverlay=w1-gpio"
+
+## Installing the server
+Clone the repo  
+
+Setup a virtual environment and install the packages.
+
+```
+python3 -m venv .\venv
+source venv/bin/activate
+```
+
+To exit the venv 
+
+```
+deactivate
+```
+
+## Starting Development
+
+Create a virtual environment and install pylint:
+
+```
+python -m venv .\venv
+.\venv\activate.ps1
+pip install pylint
+pip install -r requirements.txt
+```

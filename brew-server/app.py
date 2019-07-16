@@ -46,6 +46,16 @@ def index():
 def temp():
   return "%f" % read_temp()
 
+#set the set temperature
+@app.route('/setpoint/<int:setpoint>')
+def setpoint(setpoint):
+  return "%i" % setpoint
+
+#set the set temperature
+@app.route('/brew/<bool:start>')
+def brew(start):
+  return 'brewing: %b' % start
+
 if __name__ == '__main__':
   app.debug = debug
   app.run(host='0.0.0.0')
