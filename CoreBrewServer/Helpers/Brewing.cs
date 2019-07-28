@@ -24,7 +24,7 @@ namespace CoreBrewServer.Helpers
         private static float GetTemperature(){
             string sensorData = File.ReadAllText("/sys/bus/w1/devices/28-00000871c1e8/w1_slave");
 
-            float temperature = Int32.Parse(sensorData.Split("t=",1)[0]);
+            float temperature = Int32.Parse(sensorData.Split("t=",2)[1]);
 
             return temperature/1000;
         }
