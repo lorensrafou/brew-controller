@@ -18,6 +18,8 @@ namespace CoreBrewServer.Helpers
         {
             brewStatus.running = true;
 
+            Mash();
+
             return brewStatus;
         }
 
@@ -28,6 +30,10 @@ namespace CoreBrewServer.Helpers
             float fTemp = (cTemp * 9/5) +32;
 
             return fTemp;
+        }
+
+        public static async void Mash(){
+
         }
     }
 }

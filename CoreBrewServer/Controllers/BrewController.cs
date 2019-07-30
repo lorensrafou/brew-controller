@@ -1,7 +1,9 @@
+using System;
 using CoreBrewServer.Models;
 using Microsoft.AspNetCore.Mvc;
 using CoreBrewServer.Helpers;
 using CoreBrewServer.Entities;
+using System.Linq;
 
 namespace CoreBrewServer.Controllers
 {
@@ -14,12 +16,28 @@ namespace CoreBrewServer.Controllers
             _context = context;
         }
 
+        // GET: api/Brew/
         [HttpGet]
         public IActionResult Get()
         {
             Brew status = Brewing.GetBrewStatus();
 
             return StatusCode(201, status);
+        }
+
+        // POST: api/Brew/
+        [HttpPost]
+        public IActionResult Post([FromBody] Brew brew)
+        {
+            if(brew.running == true){
+                BrewDay bd = _context.BrewDays
+                    .FirstOrDefault(x => x.Id == brew.brewdayId);
+
+                bd.StartTime = DateTime.Now;
+
+                return StatusCode(201, bd);
+            }
+            return StatusCode(401);
         }
     }
 

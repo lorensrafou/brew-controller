@@ -4,5 +4,6 @@ namespace CoreBrewServer.Entities
     {
         public bool running { get; set; }
         public float temperature { get; set; }
+        public int brewdayId { get; set; }
     }
 }
